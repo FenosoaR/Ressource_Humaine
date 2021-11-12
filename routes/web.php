@@ -2,6 +2,7 @@
 
 use App\Http\Controllers\adminController;
 use App\Http\Controllers\CongeController;
+use App\Http\Controllers\paiementController;
 use App\Http\Controllers\PersonnelController;
 use App\Http\Controllers\pointageController;
 use App\Http\Controllers\posteController;
@@ -72,6 +73,7 @@ Route::get('/pointage/ajoutPointage',[pointageController::class,"ajouter"])->nam
 Route::post('/pointage/ajoutPointage',[pointageController::class,"store"])->name("insererPointage");
 
 
+
 Route::get('/conge',[CongeController::class,"index"])->name('conge');
 
 Route::get('conge/ajoutConge', [CongeController::class,"ajout"])->name('ajouterConge');
@@ -81,6 +83,16 @@ Route::post('/conge/ajoutConge',[CongeController::class,"store"])->name("inserer
 Route::get('/validerConge',[CongeController::class,"valider"])->name("validerConge");
 
 Route::get('/rejeterConge',[CongeController::class,"rejeter"])->name("rejeterConge");
+
+Route::get('/conge/search', [CongeController::class,'search'])->name('searchStatut');
+
+
+Route::get('/paiement', [paiementController::class,'index'])->name('paiement');
+
+Route::get('paiement/ajoutPaiement', [paiementController::class,"ajouter"])->name('ajouterPaiement');
+
+Route::post('/paiement/ajoutPaiement',[paiementController::class,"store"])->name("insererPaiement");
+
 
 
 

@@ -12,8 +12,7 @@
 
              <a href="{{ route ('ajouterPoste')}}" class='btn btn-success col-sm-3'>Ajouter <i class="fas fa-plus"></i></a>
         </div>
-       
-
+        </div>
             @if(session()->has("successDelete"))
             <div class="alert alert-success">
                 <p>{{session()->get("successDelete")}}</p>

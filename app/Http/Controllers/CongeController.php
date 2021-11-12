@@ -85,5 +85,26 @@ public function rejeter(Request $request){
      
         return back()->with('success', 'Congé rejeté');
 }
+
+public function search(Request $request){
+
+    if (session()->has('LoggedAdmin')) {
+        $admin = DB::table('admin')->where('idAdmin', session('LoggedAdmin'))->first();
+        $conge= DB:: table('conge')->where('statut', $request->statut) ->get();
+        $listeConge = [] ;
+        for( $i= 0; $i<count($conge); $i++ ){
+           
+            $listeConge[$i] = new Conge($conge[$i]->id, $conge[$i]->idPersonnel, $conge[$i]->dateDebut,$conge[$i]->statut,$conge[$i]->motif,$conge[$i]->nbJours);
+        }
+        $data = [
+            'LoggedAdminInfo' => $admin
+             
+        ];
+        
+    return view ('conge' ,compact('listeConge'),$data);
+}
+
+
+}
 }
 
