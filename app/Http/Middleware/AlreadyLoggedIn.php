@@ -18,7 +18,7 @@ class AlreadyLoggedIn
     {
         
         if(session()->has('LoggedAdmin') && (url('/') == $request->url())){
-            return redirect('acceuil');
+            return redirect('personnel');
         }
         return $next($request);
     }

@@ -36,8 +36,8 @@
 
         <div class="form-group">
           <label for="type">Type:</label>
-          <select class="form-control" name="type" id="">
-            <option value=></option>
+          <select class="form-control"  required name="type" id="">
+            <option value=>Entrer...</option>
             <option value="Entrée">Entrée</option>
             <option value="Sortie">Sortie</option>
           </select>

@@ -35,7 +35,7 @@ class PersonnelController extends Controller
             "sexe" => $request->sexe,
             "cin" => $request->cin,
             "telephone" => $request->telephone,
-            "matricule" => $request->matricule,
+          
             "email" => $request->email,
 
         ]);
@@ -60,7 +60,7 @@ class PersonnelController extends Controller
             "sexe" => $request->sexe,
             "cin" => $request->cin,
             "telephone" => $request->telephone,
-            "matricule" => $request->matricule,
+            //  "matricule" => $request->matricule,
             "email" => $request->email,
 
         ]);
@@ -100,7 +100,14 @@ class PersonnelController extends Controller
             ->join('poste', function ($join) {
                 $join->on('personnel.idPoste', '=', 'poste.id');
                      
-            })->where('nom', 'LIKE', "%" . $request->search . "%")->get();
+            })
+            ->where('nom', 'LIKE', "%" . $request->search . "%")
+            ->Orwhere('prenom', 'LIKE', "%" . $request->search . "%")
+            ->Orwhere('personnel.id', 'LIKE', "%" . $request->search . "%")
+            ->get();
+            
+
+           
             $data = [
                 'LoggedAdminInfo' => $admin,
                 'liste_personnel'=> $liste,

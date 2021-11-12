@@ -38,7 +38,7 @@
           <select class="form-control" name="idPersonnel" id="personnel">
             <option value=""></option>
             @foreach($personnel as $personnel)
-            <option value="{{ $personnel->id}} "> {{ $personnel->matricule }} </option>
+            <option value="{{ $personnel->id}} "> {{ $personnel->id }} </option>
             @endforeach
           </select>
         </div>

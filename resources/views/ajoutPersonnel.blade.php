@@ -48,7 +48,7 @@
               <div class="col-sm-5">
                 <div class="form-group">
                   <label>Date de naissance :</label>
-                  <input type="date" name="datenaissance" class="form-control">
+                  <input type="date" name="dateNaissance" required class="form-control">
                 </div>
               </div>
               <div class="col-sm-1">
@@ -58,8 +58,8 @@
               <div class="col-sm-5">
                 <div class="form-group">
                   <label for="sexe">Sexe:</label>
-                  <select class="form-control" name="sexe" id="">
-                    <option value=></option>
+                  <select class="form-control" required name="sexe" id="">
+                    <option value=> Choisissez le sexe</option>
                     <option value="Masculin">Masculin</option>
                     <option value="Feminin">Feminin</option>
                   </select>
@@ -72,7 +72,7 @@
               <div class="col-sm-5">
                 <div class="form-group">
                   <label>Adresse :</label>
-                  <input type="text" name="adresse" placeholder="Adresse" class="form-control">
+                  <input type="text" required name="adresse" class="form-control">
                 </div>
               </div>
 
@@ -81,10 +81,10 @@
               </div>
               <div class="col-sm-5">
                 <div class="form-group">
-                  <label for="poste">Choisir poste:</label>
+                  <label for="poste"> Poste:</label>
 
-                  <select class="form-control" name="idPoste" id="poste">
-                    <option value=""></option>
+                  <select class="form-control"  required name="idPoste" id="poste">
+                    <option value=""> Choisissez le poste</option>
                     @foreach($postes as $poste)
                     <option value="{{ $poste->id}} "> {{ $poste->libelle }} </option>
                     @endforeach
