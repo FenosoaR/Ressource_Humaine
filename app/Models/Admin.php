@@ -8,5 +8,5 @@ use Illuminate\Database\Eloquent\Model;
 class Admin extends Model
 {
     use HasFactory;
-    protected $fillable=["nomAdmin","prenomAdmin","emailAdmin","mdpAdmin"];
+    protected $fillable= ['nomAdmin','prenomAdmin','mdpAdmin','emailAdmin'];
 }

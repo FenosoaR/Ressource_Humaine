@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\Personnel;
+use Carbon\Carbon;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 
@@ -26,6 +27,8 @@ class PersonnelController extends Controller
     public function store(Request $request)
     {
 
+        $imageName = time().'.'.$request->image->extension();
+        $request->image->move(public_path('photo'), $imageName);
         DB::table('personnel')->insert([
             "idPoste" => $request->idPoste,
             "nom" => $request->nom,
@@ -35,9 +38,9 @@ class PersonnelController extends Controller
             "sexe" => $request->sexe,
             "cin" => $request->cin,
             "telephone" => $request->telephone,
-          
             "email" => $request->email,
-
+            "image"=> $imageName,
+            "created_at" => Carbon::now(),
         ]);
 
         return back()->with('success', 'Personnel ajouté  avec succes');
@@ -51,26 +54,36 @@ class PersonnelController extends Controller
 
     public function update(Request $request, Personnel $personnel)
     {
-        $updatePersonnel = DB::table('personnel')->where('id', $request->personnelupdate)->update([
-            "idPoste" => $request->idPoste,
-            "nom" => $request->nom,
-            "prenom" => $request->prenom,
-            "dateNaissance" => $request->dateNaissance,
-            "adresse" => $request->adresse,
-            "sexe" => $request->sexe,
-            "cin" => $request->cin,
-            "telephone" => $request->telephone,
-            //  "matricule" => $request->matricule,
-            "email" => $request->email,
+        $image='';
 
-        ]);
-        return back()->with('success', 'Personnel mis à jour  avec succes');
+
+       if($request->image){
+        $image = time().'.'.$request->image->extension();
+        $request->image->move(public_path('photo'), $image);
+       }else{
+        $image=$request->imageOld;
+       }
+
+
+       $updatePersonnel = DB::table('personnel')->where('id', $request->personnelupdate)->update([
+        "idPoste" => $request->idPoste,
+        "nom" => $request->nom,
+        "prenom" => $request->prenom,
+        "dateNaissance" => $request->dateNaissance,
+        "adresse" => $request->adresse,
+        "sexe" => $request->sexe,
+        "cin" => $request->cin,
+        "telephone" => $request->telephone,
+        "email" => $request->email,
+        "image" =>$image
+
+    ]);
+    return back()->with('success', 'Personnel mis à jour  avec succes');
+
     }
 
     public function edit($idPersonnel)
     {
-
-
         if (session()->has('LoggedAdmin')) {
             // if loggedEtudiant exist
             $admin = DB::table('admin')->where('idAdmin', session('LoggedAdmin'))->first();
@@ -81,10 +94,7 @@ class PersonnelController extends Controller
                 'personnelid' =>$personnelid,
                 'postes' => $listePoste
             ];
-
-            
         }
-
         return view("editPersonnel", $data);
     }
 
@@ -99,15 +109,15 @@ class PersonnelController extends Controller
             ->select('personnel.*','poste.libelle')
             ->join('poste', function ($join) {
                 $join->on('personnel.idPoste', '=', 'poste.id');
-                     
+
             })
             ->where('nom', 'LIKE', "%" . $request->search . "%")
             ->Orwhere('prenom', 'LIKE', "%" . $request->search . "%")
             ->Orwhere('personnel.id', 'LIKE', "%" . $request->search . "%")
             ->get();
-            
 
-           
+
+
             $data = [
                 'LoggedAdminInfo' => $admin,
                 'liste_personnel'=> $liste,
@@ -119,7 +129,7 @@ class PersonnelController extends Controller
             // $search = $request->input('search');
 
             // Search in the title and body columns from the posts table
-            
+
 
             // Return the search view with the resluts compacted
             return view('personnel', $data);
@@ -132,10 +142,10 @@ class PersonnelController extends Controller
             $admin = DB::table('admin')->where('idAdmin', session('LoggedAdmin'))->first();
             $personnelid = DB::table('personnel')
             ->select('personnel.*','poste.libelle')
-           
+
             ->join('poste', function ($join) {
                 $join->on('personnel.idPoste', '=', 'poste.id');
-                     
+
             })->where('personnel.id', $idPersonnel)->first();
             $data = [
                 'LoggedAdminInfo' => $admin,

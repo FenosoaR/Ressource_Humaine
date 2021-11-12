@@ -32,16 +32,16 @@
                                                 {{ Session::get('error') }}
                                             </div>
                                             @endif
-                                             
+
                                             <div class="form-group">
-                                                <input type="email" class="form-control form-control-user"  value="admin@gmail.com" name="emailAdmin" id="exampleInputEmail" aria-describedby="emailHelp" placeholder="Entrer votre email" value="{{old('emailAdmin')}}">
+                                                <input type="email" class="form-control form-control-user"  value="mandresy@gmail.com" name="emailAdmin" id="exampleInputEmail" aria-describedby="emailHelp" placeholder="Entrer votre email" value="{{old('emailAdmin')}}">
                                                 <span class="text-danger">
                                                     @error('emailAdmin')
                                                     {{ $message }}
                                                     @enderror </span>
                                             </div>
                                             <div class="form-group">
-                                                <input type="password" class="form-control form-control-user" value="admin" name="mdpAdmin" id="exampleInputPassword" placeholder="Mot de passe">
+                                                <input type="password" class="form-control form-control-user" value="manman" name="mdpAdmin" id="exampleInputPassword" placeholder="Mot de passe">
                                                 <span class="text-danger">
                                                     @error('mdpAdmin')
                                                     {{ $message }}

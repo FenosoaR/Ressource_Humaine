@@ -6,54 +6,66 @@
   <div class="card shadow mb-4">
     <div class="card-header py-3">
       <div class="row">
-        <h6 class="m-0 font-weight-bold col-sm-4">Details d'une personnel</h6>
+        <h6 class="m-0  col-sm-10"><img src= "{{ asset ('img/table.png') }}" class="mr-2 mb-2"  alt="Icon liste"><b>Fiche du personnel :</b>  PR/{{ $personnelid->id  }}</h6>
+        <a href="{{ route('editPersonnel', ['personnel' => $personnelid->id]) }}" class='btn btn-info'>
+                                   Modifier <i class="fas fa-edit ml-1"></i>
+                                </a>
+    </div>
       </div>
+      <div class="card-body">
+      <div class="row">
+      <div class="col-sm-3">
+      <img src= "{{ asset ('photo/'. $personnelid->image) }}" class="img-thumbnail" width="150" height="150" />
 
-        <div class="row">
-         <label  class="col sm-3" > <b> Nom: </b> </label>  <label  class="col sm-4" > {{ $personnelid->nom  }}</label>
+    </div>
+    <div class="col-sm-8">
+    <div class="row" style="margin-bottom: 15px;">
+                <label class="col-sm-3 text-info">Nom:</label>
+                <label class="col-sm-4">{{ $personnelid->nom  }}</label>
         </div>
-        <br>
-        <div class="row">
-          <label  class="col sm-3"><b> Prenom:</b> </label><label  class="col sm-4" > {{ $personnelid->prenom  }}</label>
+        <hr>
+        <div class="row" style="margin-bottom: 15px;">
+                <label class="col-sm-3 text-info">Prenom:</label>
+                <label class="col-sm-4">{{ $personnelid->prenom  }}</label>
         </div>
-        <br>
+        <hr>
         <div class="row">
-          <label  class="col sm-4"><b> Date de naissance: </b>  </label> <label class="col sm-4" >  {{date('d/m/Y', strtotime($personnelid->dateNaissance)) }}</label>
+          <label  class="col-sm-3 text-info"> Date de naissance:   </label>
+          <label class="col-sm-4" >  {{date('d/m/Y', strtotime($personnelid->dateNaissance)) }}</label>
         </div>
-        <br>
+        <hr>
         <div class="row">
-          <label  class="col sm-4" > <b>Poste: </b> </label> <label  class="col sm-4" >  {{ $personnelid->libelle }} </label>
+          <label  class="col-sm-3 text-info"> Poste:   </label>
+          <label class="col-sm-4" > {{ $personnelid->libelle }}</label>
         </div>
-        <br>
+        <hr>
         <div class="row">
-          <label for="sexe" class="col sm-4"> <b> Sexe: </b> </label> <label   class="col sm-4" > {{ $personnelid->sexe  }}</label>
+          <label  class="col-sm-3 text-info"> Sexe:  </label>
+          <label class="col-sm-4" > {{ $personnelid->sexe  }}</label>
         </div>
-        <br>
+        <hr>
         <div class="row">
-          <label for="adresse" class="col sm-4"> <b> Adresse: </b> </label><label  class="col sm-4" >  {{ $personnelid->adresse   }}</label>
+          <label  class="col-sm-3 text-info"> Adresse:  </label>
+          <label class="col-sm-4" > {{ $personnelid->adresse   }}</label>
         </div>
-        <br>
+        <hr>
         <div class="row">
-          <label for="cin" class="col sm-4" > <b> CIN: </b> </label><label  class="col sm-4" >  {{ $personnelid->CIN }}</label>
-
+          <label  class="col-sm-3 text-info"> CIN:  </label>
+          <label class="col-sm-4" > {{ $personnelid->cin }}</label>
         </div>
-        <br>
+        <hr>
         <div class="row">
-          <label for="telephone" class="col sm-4" > <b> Telephone: </b> </label><label   class="col sm-4" > {{ $personnelid->telephone }}</label>
-
+          <label  class="col-sm-3 text-info"> Telephone:  </label>
+          <label class="col-sm-4" > {{ $personnelid->telephone }}</label>
         </div>
-        <br>
-
+        <hr>
         <div class="row">
-          <label for="matricule" class="col sm-4" > <b> Matricule: </b> </label><label  class="col sm-4" > {{ $personnelid->matricule  }}</label>
-
+          <label  class="col-sm-3 text-info"> Email: </label>
+          <label class="col-sm-4" > {{ $personnelid->email  }}</label>
         </div>
-        <br>
-        <div class="row">
-          <label for="email" class="col sm-4" > <b> Email: </b> </label><label  class="col sm-4" >  {{ $personnelid->email  }}</label>
-        </div>
-
-
+        <hr>
+          </div>
+      </div>
 
     </div>
   </div>
