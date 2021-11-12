@@ -6,11 +6,9 @@
     <div class="alert alert-success col-sm-5" role="status">{{session()->get("success")}} <img src="{{ asset ('img/checked.png') }}" class="float-right" alt="Icon Check"></div>
     @endif
     @if($errors->any())
-    <ul>
-        @foreach($errors->all() as $error)
-        <li>{{$error}}</li>
-        @endforeach
-    </ul>
+    @foreach($errors->all() as $error)
+    <div class="alert alert-success col-sm-5" role="status">{{$error}} <img src="{{ asset ('img/warning.png') }}" class="float-right" alt="Icon warning"></div>
+    @endforeach
     @endif
     <div class="card shadow mb-4">
         <div class="card-header">

@@ -89,9 +89,9 @@ Route::get('/conge/search', [CongeController::class,'search'])->name('searchStat
 
 Route::get('/paiement', [paiementController::class,'index'])->name('paiement');
 
-Route::get('paiement/ajoutPaiement', [paiementController::class,"ajouter"])->name('ajouterPaiement');
+Route::get('paiement/situationPaiement',[paiementController::class,"situation"])->name('situationPaiement');
 
-Route::post('/paiement/ajoutPaiement',[paiementController::class,"store"])->name("insererPaiement");
+Route::post('/paiement/ajoutConge',[paiementController::class,"store"])->name("insererPaiement");
 
 
 
